@@ -63,144 +63,15 @@
                                 <h2 class="movie-score">
                                     <span class="label label-primary" th:text="${movie.score} + #{caticket.score}">7.5分</span>
                                 </h2>
-                                <h3 class="movie-release" th:text="${#calendars.format(movie.releaseTime, 'yyyy-mm-dd')} + #{caticket.release}">2016-07-14上映</h3>
+                                <h3 class="movie-release" th:text="${#calendars.format(movie.releaseTime, 'yyyy-MM-dd')} + #{caticket.release}">2016-07-14上映</h3>
                             </section>
                         </div>
                         <div class="col-xs-4 movie-sale">
                             <a class="btn btn-danger" role="button" href="#"
-                                th:href="@{/cinemas(movieId=${movie.id})}" th:text="#{caticket.buynow}">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row movie-item">
-                        <div class="col-xs-4 movie-post">
-                            <a href="#"><img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" /></a>
-                        </div>
-                        <div class="col-xs-4 movie-info">
-                            <section>
-                                <h1 class="movie-title">猎神：冬日之战</h1>
-                                <h2 class="movie-score"><span class="label label-primary">7.5分</span></h2>
-                                <h3 class="movie-release">2016-07-14上映</h3>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 movie-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
+                                th:href="(${cinema})?(@{/reservation(cinemaId=${cinema},movieId=${movie.id})}):(@{/cinemas(movieId=${movie.id})})" th:text="#{caticket.buynow}">立即购票</a>
                         </div>
                     </div>
                 </div>
-            </div>
 
         </div>
 

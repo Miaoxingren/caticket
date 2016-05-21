@@ -43,11 +43,15 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter implements Applicat
 	@Bean
     public DataSource getDataSource() {
         if (this.dataSource == null) {
+        	// MySQL的JDBC URL编写方式：jdbc:mysql://主机名称：连接端口/数据库的名称?参数=值
+            // 避免中文乱码要指定useUnicode和characterEncoding
+            // 执行数据库操作之前要在数据库管理系统上创建一个数据库，名字自己定，
+            // 下面语句之前就要先创建caticket数据库
         	DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://localhost:3306/caticket?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false");
             dataSource.setUsername("root");
-            dataSource.setPassword("miaoxingren.233");
+            dataSource.setPassword("root");
         	this.dataSource = dataSource;
         }
         return this.dataSource;

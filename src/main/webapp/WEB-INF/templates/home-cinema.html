@@ -31,7 +31,7 @@
                 </div>
             </nav>
         </header>
-
+		
         <div class="content lang-cn" th:fragment="content">
             <header class="content-header">
                 <nav class="navbar navbar-default">
@@ -59,56 +59,11 @@
                             </section>
                         </div>
                         <div class="col-xs-4 cinema-sale">
+                            <!--<a class="btn btn-danger" role="button" href="#"
+                                th:href="@{/movies(cinemaId=${cinema.id})}">立即购票</a>-->
                             <a class="btn btn-danger" role="button" href="#"
-                                th:href="@{/movies(cinemaId=${cinema.id})}">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row cinema-item">
-                        <div class="col-xs-8 cinema-info">
-                            <section>
-                                <h1 class="cinema-title">星美国际影城·世界城店</h1>
-                                <h2 class="cinema-location">朝阳区金汇路8号世界城E座地下一层(世贸天阶北侧)</h2>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 cinema-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row cinema-item">
-                        <div class="col-xs-8 cinema-info">
-                            <section>
-                                <h1 class="cinema-title">星美国际影城·世界城店</h1>
-                                <h2 class="cinema-location">朝阳区金汇路8号世界城E座地下一层(世贸天阶北侧)</h2>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 cinema-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row cinema-item">
-                        <div class="col-xs-8 cinema-info">
-                            <section>
-                                <h1 class="cinema-title">星美国际影城·世界城店</h1>
-                                <h2 class="cinema-location">朝阳区金汇路8号世界城E座地下一层(世贸天阶北侧)</h2>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 cinema-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
-                        </div>
-                    </div>
-
-                    <div class="row cinema-item">
-                        <div class="col-xs-8 cinema-info">
-                            <section>
-                                <h1 class="cinema-title">星美国际影城·世界城店</h1>
-                                <h2 class="cinema-location">朝阳区金汇路8号世界城E座地下一层(世贸天阶北侧)</h2>
-                            </section>
-                        </div>
-                        <div class="col-xs-4 cinema-sale">
-                            <a class="btn btn-danger" href="#" role="button">立即购票</a>
+                                th:href="(${movie})?(@{/reservation(cinemaId=${cinema.id},movieId=${movie})}):(@{/movies(cinemaId=${cinema.id})})">立即购票</a>
+                                
                         </div>
                     </div>
                 </div>

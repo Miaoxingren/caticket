@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java=ISO-8859-1
+encoding//src/main/java/threeq/caticket/application/SpringWebConfig.java=UTF-8
+encoding//src/main/java/threeq/caticket/controller/UserController.java=UTF-8
+encoding//src/main/java/threeq/caticket/entities/repositories/UserRepository.java=UTF-8
 encoding//src/main/resources=ISO-8859-1
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

@@ -27,7 +27,30 @@ public class UserService {
         return this.userRepository.findByName(name);
     }
     
+    public User findById(final int id) {
+    	return this.userRepository.findById(id);
+    }
+    
+    public User findOne(String name, String password) {
+    	User temp = null;
+    	temp = this.userRepository.findByName(name);
+    	if (temp != null) {
+    		if (!password.equals(temp.getPassword())) {
+    			temp = null;
+    		}
+    	}
+    	return temp;
+    }
+    
     public int insert(String name, String password) {
     	return this.userRepository.insert(name, password);
+    }
+    
+    public boolean updateName(int id, String name) {
+    	return this.userRepository.updateName(id, name);
+    }
+    
+    public boolean updatePassword(int id, String password) {
+    	return this.userRepository.updatePassword(id, password);
     }
 }

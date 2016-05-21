@@ -1,5 +1,6 @@
 package threeq.caticket.services;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,12 @@ public class MovieService {
         return this.movieRepository.findById(id);
     }
     
-
+    public List<Movie> findPartById(final int[] id) {
+    	List<Movie> movieList = new LinkedList<Movie>();
+    	for (int i = 0; i < id.length; i++) {
+    		movieList.add(this.movieRepository.findById(id[i]));
+    	}
+    	return movieList;
+    }
+    
 }

@@ -10,6 +10,7 @@ public class Movie {
 	private String[] doctors;
 	private String[] actors;
 	private String[] movieTypes;
+	private int[] cinemaList;
 	private String detail;
 	private float lowCost;
 	private float score;
@@ -45,11 +46,33 @@ public class Movie {
 	public String[] getDoctors() {
 		return doctors;
 	}
+	public String printDoctors() {
+		String temp = "";
+		if (doctors != null) {
+			int i, l = doctors.length;
+			if (l != 0) temp += doctors[0];
+			for (i = 1; i < l; i++) {
+				temp += "/" + doctors[i];
+			}
+		}
+		return temp;
+	}
 	public void setDoctors(String[] doctors) {
 		this.doctors = doctors;
 	}
 	public String[] getActors() {
 		return actors;
+	}
+	public String printActors() {
+		String temp = "";
+		if (actors != null) {
+			int i, l = actors.length;
+			if (l != 0) temp += actors[0];
+			for (i = 1; i < l; i++) {
+				temp += "/" + actors[i];
+			}
+		}
+		return temp;
 	}
 	public void setActors(String[] actors) {
 		this.actors = actors;
@@ -57,8 +80,25 @@ public class Movie {
 	public String[] getMovieTypes() {
 		return movieTypes;
 	}
+	public String printMovieTypes() {
+		String temp = "";
+		if (movieTypes != null) {
+			int i, l = movieTypes.length;
+			if (l != 0) temp += movieTypes[0];
+			for (i = 1; i < l; i++) {
+				temp += "/" + movieTypes[i];
+			}
+		}
+		return temp;
+	}
 	public void setMovieTypes(String[] movieTypes) {
 		this.movieTypes = movieTypes;
+	}
+	public int[] getCinemaList() {
+		return cinemaList;
+	}
+	public void setCinemaList(int[] cinemalist) {
+		this.cinemaList = cinemalist;
 	}
 	public String getDetail() {
 		return detail;
@@ -78,8 +118,5 @@ public class Movie {
 	public void setScore(float score) {
 		this.score = score;
 	}
-
-
-	
 
 }

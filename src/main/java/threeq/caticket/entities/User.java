@@ -34,6 +34,4 @@ public class User {
                 "Customer[id=%d, name='%s']",
                 id, name);
     }
-
-
 }

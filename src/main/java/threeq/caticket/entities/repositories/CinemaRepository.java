@@ -56,4 +56,5 @@ public class CinemaRepository {
 				new Object[]{id},
 				new CinemaMapper());
 	}
+	
 }

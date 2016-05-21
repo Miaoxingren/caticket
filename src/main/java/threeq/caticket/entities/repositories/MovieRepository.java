@@ -37,6 +37,12 @@ public class MovieRepository {
 			movie.setDoctors(doctors.split(","));
 			String movieTypes = rs.getString("movieTypes");
 			movie.setMovieTypes(movieTypes.split(","));
+			String[] cinemas = rs.getString("cinemaList").split(",");
+			int[] cinemaList = new int[cinemas.length];
+			for (int i = 0; i < cinemaList.length; i++) {
+				cinemaList[i] = Integer.parseInt(cinemas[i]);
+			}
+			movie.setCinemaList(cinemaList);
 		    return movie;
 		}
 	}
