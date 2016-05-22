@@ -282,6 +282,7 @@
     background-color: transparent;
     border: 1px solid #F26262;
     border-radius: 40px;
+    color: #fff;
 }
 
 .submit:hover {
