@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cinemas`
+-- Table structure for table `reservations`
 --
 
-DROP TABLE IF EXISTS `cinemas`;
+DROP TABLE IF EXISTS `reservations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cinemas` (
+CREATE TABLE `reservations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `area` text NOT NULL,
-  `location` text NOT NULL,
-  `phone` text NOT NULL,
-  `score` float NOT NULL,
-  `movieList` text NOT NULL,
+  `userId` int(11) NOT NULL,
+  `sessionId` int(11) NOT NULL,
+  `seatCnt` int(11) NOT NULL,
+  `seats` text NOT NULL,
+  `price` float NOT NULL,
+  `isPaied` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cinemas`
+-- Dumping data for table `reservations`
 --
 
-LOCK TABLES `cinemas` WRITE;
-/*!40000 ALTER TABLE `cinemas` DISABLE KEYS */;
-INSERT INTO `cinemas` VALUES (1,'Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817425236',7.5,'1,2,3'),(2,'Aoshima Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817423896',8.5,'4,6,7'),(3,'Guangzhou Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18814225896',7.5,'1,2,8'),(4,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817433896',4.5,'1,3,4'),(5,'Guangzhou Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817225896',7.5,'1,2,3,4,5'),(6,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817425896',3,'1,2,3,7'),(7,'Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817225896',7.5,'7,8'),(8,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817425136',4,'7');
-/*!40000 ALTER TABLE `cinemas` ENABLE KEYS */;
+LOCK TABLES `reservations` WRITE;
+/*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
+INSERT INTO `reservations` VALUES (1,1,22,1,'4-7,5-6',95.5,1),(2,1,8,1,'1-9,3-7',35.5,1),(3,3,22,1,'3-4,4-4',95.5,1),(4,1,22,1,'6-5,1-3',95.5,1),(5,3,8,1,'6-6,4-6',35.5,1),(6,1,22,1,'7-8,2-4',95.5,1),(7,2,22,1,'7-8,3-5',95.5,1),(8,3,2,4,'5-4,6-4,5-3,6-3,',142,1),(9,2,14,1,'7-6,7-5,5-3',95.5,1),(10,3,23,1,'6-8,5-4',95.5,1),(11,3,23,1,'7-7,1-1',95.5,1);
+/*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

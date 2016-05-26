@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cinemas`
+-- Table structure for table `seats`
 --
 
-DROP TABLE IF EXISTS `cinemas`;
+DROP TABLE IF EXISTS `seats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cinemas` (
+CREATE TABLE `seats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `area` text NOT NULL,
-  `location` text NOT NULL,
-  `phone` text NOT NULL,
-  `score` float NOT NULL,
-  `movieList` text NOT NULL,
+  `lineCnt` int(11) NOT NULL,
+  `chairCnt` int(11) NOT NULL,
+  `chairs` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cinemas`
+-- Dumping data for table `seats`
 --
 
-LOCK TABLES `cinemas` WRITE;
-/*!40000 ALTER TABLE `cinemas` DISABLE KEYS */;
-INSERT INTO `cinemas` VALUES (1,'Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817425236',7.5,'1,2,3'),(2,'Aoshima Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817423896',8.5,'4,6,7'),(3,'Guangzhou Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18814225896',7.5,'1,2,8'),(4,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817433896',4.5,'1,3,4'),(5,'Guangzhou Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817225896',7.5,'1,2,3,4,5'),(6,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817425896',3,'1,2,3,7'),(7,'Aoshima Cinema','TianHe','TianHeQu TaiYangCheng Aoshima','18817225896',7.5,'7,8'),(8,'Guangzhou Central Cinema','Aoshima','TianHeQu TaiYangCheng','18817425136',4,'7');
-/*!40000 ALTER TABLE `cinemas` ENABLE KEYS */;
+LOCK TABLES `seats` WRITE;
+/*!40000 ALTER TABLE `seats` DISABLE KEYS */;
+INSERT INTO `seats` VALUES (1,7,9,'1,1,1,1,0,0,1,0,0,\n1,1,1,1,1,1,1,1,1,\n1,1,1,0,1,1,1,1,1,\n1,1,1,0,1,1,1,1,1,\n1,1,0,0,1,1,0,1,1,\n1,1,0,0,0,0,1,0,1,\n0,1,1,1,1,0,0,0,1'),(2,7,9,'0,0,0,0,0,0,0,0,0,\r 0,0,0,0,0,0,0,0,0,\r 0,0,0,0,0,0,0,0,0,\r 0,0,0,0,0,0,0,0,1,\r 0,0,1,0,0,0,1,0,0,\r 0,0,0,0,0,0,0,0,0,\r 1,0,1,0,0,0,1,0,0'),(3,6,9,'0,0,0,0,0,0,0,0,1,\r 0,0,0,0,0,0,0,0,0,\r 0,0,0,1,0,0,0,0,0,\r 0,0,1,0,0,0,1,0,0,\r 0,0,0,0,0,0,0,0,0,\r 1,0,0,0,1,0,0,1,0');
+/*!40000 ALTER TABLE `seats` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
