@@ -56,19 +56,19 @@
             <div class="movie-brief">
                 <div class="actor-list">
                     <h3 th:text="#{caticket.actors}"></h3><br/>
-                    <h3 >
+                    <div>
                          <ul th:each="actor : ${movie.actors}">
                             <li><span class="label label-info moive-actor" th:text="${actor}">演员</span></li>
                         </ul>
-                    </h3>
+                    </div>
                 </div>
 
                 <h3 th:text="#{caticket.detail}">简介：</h3>
-                <h3>
+                <div>
                     <p th:text="${movie.detail}">
                         邪恶魔后（查理兹·塞隆 饰）得知其妹冰雪女皇的女儿将会比她更美丽，操控冰雪女皇的爱人杀死她。善良的冰雪女皇（艾米莉·布朗特 饰）发现后崩溃，却释放出自己潜藏已久的强大冰魔法，她不再相信爱。冰雪女皇搬到遥远的北方，建立自己的帝国，变得冷酷无情，培养出一支狩猎者军队，整个帝国只有一条律法:不准爱。可是，偏偏她的左右手，狩猎者艾力（克里斯·海姆斯沃斯 饰）和莎拉（洁西卡·雀丝坦 饰）却情不自禁地爱上……于是冰雪女皇把莎拉留在身边，把艾力放逐，从此分隔他们。意想不到的是，艾力正正到了邪恶魔后所夺取的王国，并协助了白雪公主击败邪恶魔后，夺回王国。
                     </p>
-                </h3>
+                </div>
             </div>
         </div>
 

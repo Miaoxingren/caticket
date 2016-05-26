@@ -24,7 +24,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("threeq.caticket")
+@ComponentScan(basePackages = "threeq.caticket")
 public class SpringWebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
 	public static final String CHARACTER_ENCODING = "UTF-8";
@@ -49,9 +49,9 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter implements Applicat
             // 下面语句之前就要先创建caticket数据库
         	DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/caticket?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false");
+            dataSource.setUrl("jdbc:mysql://localhost:3306/caticket?characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false");
             dataSource.setUsername("root");
-            dataSource.setPassword("root");
+            dataSource.setPassword("miaoxingren.233");
         	this.dataSource = dataSource;
         }
         return this.dataSource;

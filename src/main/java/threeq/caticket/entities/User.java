@@ -3,6 +3,7 @@ package threeq.caticket.entities;
 public class User {
 	private int id;
 	private String name;
+	private String username;
 	private String password;
 	
 	public User() {
@@ -34,4 +35,14 @@ public class User {
                 "Customer[id=%d, name='%s']",
                 id, name);
     }
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 }

@@ -18,7 +18,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#" th:href="@{/caticket}">
+                        <a class="navbar-brand" href="#" th:href="@{/}">
                             <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
                             <span class="brand" th:text="#{caticket.title}">CATICKET</span>
                         </a>
@@ -34,105 +34,49 @@
 
         <div class="content lang-cn" th:fragment="content">
             <header class="content-header">
-                <h1 th:text="${movie.name}">猎神：冬日之战</h1>
+                <div class="session-movie-cinema">
+                    <h1 th:text="${movie.name}">猎神：冬日之战</h1>
+                    <h2 th:text="${cinema.name}">科学中心影院</h2>
+                </div>
                 <div class="nav-session">
                     <nav class="navbar navbar-default">
                         <ul class="nav navbar-nav child-nav">
-                            <li class="active first" th:class="(${movie.sessionDate} == 1) ? 'active first' : 'first'">
-                                <a href="#" th:text="'今天' + '('+ ${#calendars.format(movie.today, 'mm-dd')} + ')'"
-                                    th:href="@{/caticket/sessions(date=${movie.today})}">今天(04-26)</a>
+                            <li class="active first" th:class="(${order} == 1) ? 'active first' : 'first'">
+                                <a href="#" th:text="#{caticket.today} + '('+ ${#calendars.format(today, 'MM-dd')} + ')'"
+                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=1)}">今天(04-26)</a>
                             </li>
                             <li><a class="disabled">|</a></li>
-                            <li th:class="(${movie.sessionDate} == 2) ? 'active'">
-                                <a href="#" th:text="'明天' + '('+ ${#calendars.format(movie.tomorrow, 'mm-dd')} + ')'"
-                                    th:href="@{/caticket/sessions(date=${movie.tomorrow})}">明天(04-27)</a>
+                            <li th:class="(${order} == 2) ? 'active'">
+                                <a href="#" th:text="#{caticket.tomorrow} + '('+ ${#calendars.format(tomorrow, 'MM-dd')} + ')'"
+                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=2)}">明天(04-27)</a>
                             </li>
                             <li><a class="disabled">|</a></li>
-                            <li th:class="(${movie.sessionDate} == 3) ? 'active'">
-                                <a href="#" th:text="'后天' + '('+ ${#calendars.format(movie.aftertomorrow, 'mm-dd')} + ')'"
-                                    th:href="@{/caticket/sessions(date=${movie.aftertomorrow})}">后天(04-28)</a>
+                            <li th:class="(${order} == 3) ? 'active'">
+                                <a href="#" th:text="#{caticket.aftertomorrow} + '(' + ${#calendars.format(aftertomorrow, 'MM-dd')} + ')'"
+                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=3)}">后天(04-28)</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </header>
 
-            <div class="session-list">
+            <div class="session-list" th:if="${not #lists.isEmpty(allSessions)}">
                 <table class="session-table table">
                     <tbody th:remove="all-but-first">
-                        <tr class="session-item" th:each="session : ${sessions}">
-                            <td class="session-time" th:text="$(session.time)">9:00am-10:30am</td>
-                            <td class="session-lang" th:text="$(session.language)">英语3D</td>
-                            <td class="session-room" th:text="$(session.room)">1号厅</td>
-                            <td class="session-price" th:text="'￥' + $(session.price)">￥35</td>
+                        <tr class="session-item" th:each="sessionItem : ${allSessions}">
+                            <td class="session-time" th:text="${#calendars.format(sessionItem.beginTime, 'HH:mm a') + '-' + #calendars.format(sessionItem.endTime, 'HH:mm a')}">9:00am-10:30am</td>
+                            <td class="session-lang"><span th:text="${sessionItem.language}">英语</span><span th:if="${sessionItem.isThreeD}" class="badge">3D</span></td>
+                            <td class="session-room" th:text="${sessionItem.room} + #{caticket.room}">1号厅</td>
+                            <td class="session-price" th:text="#{caticket.money} + ${sessionItem.price}">￥35</td>
                             <td class="session-sale"><a class="btn btn-danger" role="button" href="#"
-                                th:href="@{/caticket/movies(cinemaId=${cinema.id})}">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
-                        </tr>
-                        <tr class="session-item">
-                            <td class="session-time">9:00am-10:30am</td>
-                            <td class="session-lang">英语3D</td>
-                            <td class="session-room">1号厅</td>
-                            <td class="session-price">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" href="#" role="button">选座购票</a></td>
+                                th:href="@{/seat(sessionId=${sessionItem.id})}" th:text="#{caticket.buybyseat}">选座购票</a></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="session-none" th:if="${#lists.isEmpty(allSessions)}">
+                <h1><span class="icon-face-open-mouth-eyebrows vertical-center"></span><span th:th:text="#{caticket.nosession}">该日放映场次已无</span></h1>
             </div>
         </div>
 

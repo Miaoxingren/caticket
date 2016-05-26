@@ -67,11 +67,11 @@ table {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-task:before {
-    content: "\e904";
+.icon-profile-male:before {
+    content: "\e900";
 }
-.icon-ipad:before {
-    content: "\e905";
+.icon-key:before {
+    content: "\e901";
 }
 .icon-user:before {
     content: "\e902";
@@ -79,13 +79,18 @@ table {
 .icon-magnifying-glass:before {
     content: "\e903";
 }
-.icon-key:before {
-    content: "\e901";
+.icon-task:before {
+    content: "\e904";
 }
-.icon-profile-male:before {
-    content: "\e900";
+.icon-ipad:before {
+    content: "\e905";
 }
-
+.icon-face-open-mouth-eyebrows:before {
+    content: "\e906";
+}
+.icon-enter:before {
+    content: "\ea13";
+}
 /* general style for layout */
 body {
     background-color: #2C2F3E;
@@ -113,6 +118,12 @@ body {
     color: white;
 }
 
+.badge {
+    padding: 5px;
+    font-size: 1.05em;
+    background-color: #0087E2;
+}
+
 .main .navbar,
 .main ul.navbar-nav > li > a,
 .main ul.navbar-nav > li > a:link,
@@ -126,9 +137,17 @@ body {
 .main ul.navbar-nav > li.active > a:active,
 .main input,
 .main input:focus,
-.main table tbody tr td {
+.main table tbody tr td,
+button,
+button:focus,
+.panel,
+.panel-default,
+.panel-default > .panel-heading,
+.panel-body,
+.panel-footer {
     background-color: transparent;
     border: none;
+    outline: none;
     color: white;
     border-radius: 0;
     box-shadow: none;
@@ -169,6 +188,7 @@ body {
 }
 
 /* style for footer */
+
 .main-footer {
     margin: 30px 0;
     text-align: center;

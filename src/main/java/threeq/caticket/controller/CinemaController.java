@@ -43,7 +43,6 @@ public class CinemaController {
 
 	@RequestMapping({"/", "/cinemas"})
 	public String showCinemas(HttpServletRequest req,  HttpServletRequest res, Model model) {
-		System.out.println(req.getCookies());
 		return "home-cinema";
 	}
 	

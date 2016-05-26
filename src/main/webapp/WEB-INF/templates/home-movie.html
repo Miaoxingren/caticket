@@ -68,11 +68,11 @@
                         </div>
                         <div class="col-xs-4 movie-sale">
                             <a class="btn btn-danger" role="button" href="#"
-                                th:href="(${cinema})?(@{/reservation(cinemaId=${cinema},movieId=${movie.id})}):(@{/cinemas(movieId=${movie.id})})" th:text="#{caticket.buynow}">立即购票</a>
+                                th:href="(${cinema})?(@{/session(cinemaId=${cinema},movieId=${movie.id})}):(@{/cinemas(movieId=${movie.id})})" th:text="#{caticket.buynow}">立即购票</a>
                         </div>
                     </div>
                 </div>
-
+			</div>
         </div>
 
         <footer class="main-footer lang-en" th:replace="layout :: footer">

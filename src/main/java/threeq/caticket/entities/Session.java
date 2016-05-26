@@ -1,17 +1,22 @@
 package threeq.caticket.entities;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Session {
 	private int id;
 	private String movieName;
 	private String cinemaName;
 	private String language;
+	private int movieId;
+	private int cinemaId;
 	private int room;
+	private boolean isThreeD;
 	private Date playDate;
-	private Date beginTime;
-	private Date endTime;
+	private Time beginTime;
+	private Time endTime;
 	private float price;
+	private int seatId;
 	
 	public Session() {
 		super();
@@ -53,16 +58,16 @@ public class Session {
 	public void setPlayDate(Date playDate) {
 		this.playDate = playDate;
 	}
-	public Date getBeginTime() {
+	public Time getBeginTime() {
 		return beginTime;
 	}
-	public void setBeginTime(Date beginTime) {
+	public void setBeginTime(Time beginTime) {
 		this.beginTime = beginTime;
 	}
-	public Date getEndTime() {
+	public Time getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
 	public float getPrice() {
@@ -70,6 +75,38 @@ public class Session {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public int getSeatId() {
+		return seatId;
+	}
+
+	public void setSeatId(int seatId) {
+		this.seatId = seatId;
+	}
+
+	public boolean getIsThreeD() {
+		return isThreeD;
+	}
+
+	public void setIsThreeD(boolean isThreeD) {
+		this.isThreeD = isThreeD;
+	}
+
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+
+	public int getCinemaId() {
+		return cinemaId;
+	}
+
+	public void setCinemaId(int cinemaId) {
+		this.cinemaId = cinemaId;
 	}
 	
 }

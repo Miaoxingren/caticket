@@ -1,6 +1,6 @@
 var CATICKET = {};
 
-CATICKET.eventHandler = (function(){
+CATICKET.eventHandler = (function() {
     var addEvent = function (target, type, handler) {
         if (target.addEventListener) {
             target.addEventListener(type, handler, false);
@@ -91,22 +91,41 @@ CATICKET.seatHandler = (function () {
 
     getAllSeats = function () {
         return seats;
+    },
+
+    getSeatCnt = function () {
+        return seats.length;
+    },
+
+    getSeatStr = function () {
+        var i = 0,
+            str = "",
+            length = seats.length;
+        for (; i < length; ++i) {
+            str += seats[i].line + '-'  + seats[i].chair + ',';
+        }
+        return str;
     };
 
     return {
         addSeat: addSeat,
         removeSeat: removeSeat,
-        getAllSeats: getAllSeats
+        getAllSeats: getAllSeats,
+        getSeatCnt: getSeatCnt,
+        getSeatStr: getSeatStr
     };
 }());
 
-
 (function(){
     var seatTable = document.querySelector(".seat-table"),
-        seatSelected = document.querySelector(".reservation-check .check-seats"),
-        seatPrice = document.querySelector(".reservation-info .info-session .info-session-price"),
-        seatCount = document.querySelector(".reservation-check .check-tickets .tickets-count"),
-        seatCost = document.querySelector(".reservation-check .check-cost .tickets-cost");
+        seatSelected = document.querySelector(".check-seats"),
+        seatError = document.querySelector(".seat-error"),
+        seatPrice = document.querySelector(".info-session-price"),
+        ticketCount = document.querySelector(".tickets-count"),
+        seatCost = document.querySelector(".tickets-cost"),
+        seatCnt = document.querySelector(".input-seatcnt"),
+        totalPrice = document.querySelector(".input-price"),
+        seats = document.querySelector(".input-seats");
     CATICKET.eventHandler.addEvent(seatTable, "click", function (event) {
         var event = event || window.event,
             target = event.target || event.srcElement,
@@ -118,24 +137,52 @@ CATICKET.seatHandler = (function () {
             seatIndex,
             singlePrice = seatPrice.innerHTML - "";
         if (target.nodeName.toLowerCase() === "span") {
+            if (CATICKET.classHandler.hasClass(target, "seat-taken")) {
+                return;
+            }
+            if (CATICKET.seatHandler.getSeatCnt() >= 4 && CATICKET.classHandler.hasClass(target, "icon-ipad")) {
+                CATICKET.classHandler.removeClass(seatError, "invisible");
+                return;
+            }
             if (CATICKET.classHandler.toggleClass(target, "icon-ipad")) {
                 CATICKET.seatHandler.addSeat(seat);
                 seatNode = document.createElement("span");
                 seatNode.setAttribute("class", "label label-info");
                 seatNode.innerHTML = seat.line + "排" + seat.chair + "座";
                 seatSelected.appendChild(seatNode);
-                seatCount.innerHTML = seatCount.innerHTML - "" + 1;
+                ticketCount.innerHTML = ticketCount.innerHTML - "" + 1;
                 seatCost.innerHTML = seatCost.innerHTML - "" + singlePrice;
+                seatCnt.value = ticketCount.innerHTML;
+                totalPrice.value = seatCost.innerHTML;
+                seats.value = CATICKET.seatHandler.getSeatStr();
             }
             if (CATICKET.classHandler.toggleClass(target, "icon-task")) {
                 seatIndex = CATICKET.seatHandler.removeSeat(seat);
                 if (seatIndex !== -1) {
                     seatSelected.removeChild(seatSelected.childNodes[seatIndex + 1]);
-                    seatCount.innerHTML = seatCount.innerHTML - "" - 1;
+                    ticketCount.innerHTML = ticketCount.innerHTML - "" - 1;
                     seatCost.innerHTML = seatCost.innerHTML - "" - singlePrice;
+                    seatCnt.value = ticketCount.innerHTML;
+                    totalPrice.value = seatCost.innerHTML;
+                    seats.value = CATICKET.seatHandler.getSeatStr();
+                }
+                if (CATICKET.seatHandler.getSeatCnt() < 4) {
+                    CATICKET.classHandler.addClass(seatError, "invisible");
+                    return;
                 }
             }
         }
     });
 }());
-
+/*
+(function(){
+    var signin = document.querySelector(".user-activity .signin"),
+        joinus = document.querySelector(".user-activity .joinus"),
+        pwdRepeat = document.querySelector(".input-pwd-repeat");
+    CATICKET.eventHandler.addEvent(joinus, "click", function (event) {
+        if (CATICKET.classHandler.hasClass(pwdRepeat, "invisible")) {
+            CATICKET.classHandler.removeClass(pwdRepeat, "invisible");
+        }
+    });
+}());
+*/

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{caticket.title}">CATICKET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="icon" href="../../images/favicon.png" th:href="@{/images/favicon.png}" />
+    <!--[if IE]><link rel="shortcut icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}" /><![endif]-->
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="../../css/layout.css" th:href="@{/css/layout.css}" />
+    <link rel="stylesheet" type="text/css" href="../../css/caticket.css" th:href="@{/css/caticket.css}" />
+</head>
+
+<body>
+    <div class="main">
+        <header class="main-header lang-en" th:replace="layout :: header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#" th:href="@{/}">
+                            <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
+                            <span class="brand" th:text="#{caticket.title}">CATICKET</span>
+                        </a>
+                    </div>
+                    <div class="nav-user">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#" th:href="@{/user}"><span class="icon-user"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content lang-cn">
+            <header class="content-header" th:fragment="child-header">
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav child-nav">
+                        <li class="active first"><a href="#" th:href="@{/setting}" th:text="#{caticket.setting}">设置</a></li>
+                        <li><a class="disabled">|</a></li>
+                        <li><a href="#" th:href="@{/reservation}" th:text="#{caticket.order}">订单</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search" th:action="@{/logout}" method="post">
+                        <div class="form-group logout">
+                            <span class="icon-enter vertical-center"></span>
+                            <input type="submit" class="form-control" value="Log Out" th:value="#{caticket.logout}" />
+                        </div>
+                    </form>
+                </nav>
+            </header>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 order-state">
+                        <ul>
+                            <li><a href="" th:href="@{/setting?username}" th:text="#{caticket.changename}">修改用户名</a></li>
+                            <li><hr /></li>
+                            <li><a href="" th:href="@{/setting?password}" th:text="#{caticket.changepwd}">修改密码</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-offset-3 col-md-4">
+                        <div th:if="${success}" th:text="#{caticket.success}" class="user-edit-info">操作成功</div>
+                        <div th:if="${fail}" th:text="#{caticket.fail}" class="user-edit-info">操作失败</div>
+                        <div th:if="${change} == 'username'">
+                            <form action="#" th:action="@{/setting}" method="post" th:object="${user}">
+                                <div class="form-group input-user">
+                                    <span class="icon-user vertical-center"></span>
+                                    <input type="text" class="form-control" placeholder="User Name" th:placeholder="#{caticket.username}" th:field="*{username}">
+                                </div>
+                                <div><button type="submit" class="edit red-box" th:text="#{caticket.edit}">Edit</button></div>
+                            </form>
+                        </div>
+                        <div th:if="${change} == 'password'">
+                            <form action="#" th:action="@{/setting}" method="post" th:object="${user}">
+                                <div class="form-group input-user">
+                                    <span class="icon-user vertical-center"></span>
+                                    <input type="password" class="form-control" placeholder="Password" th:placeholder="#{caticket.password}" th:field="*{password}">
+                                </div>
+                                <div><button type="submit" class="edit red-box" th:text="#{caticket.edit}">Edit</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+        <footer class="main-footer lang-en" th:replace="layout :: footer">
+            <div>
+                <span th:text="#{caticket.copyright}">Copyright © 2016 by ThreeQ</span>
+            </div>
+        </footer>
+        
+    </div>
+    <script src="../../js/caticket.js" th:src="@{/js/caticket.js}" async></script>
+</body>
+
+</html>

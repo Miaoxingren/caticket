@@ -62,7 +62,7 @@
                             <!--<a class="btn btn-danger" role="button" href="#"
                                 th:href="@{/movies(cinemaId=${cinema.id})}">立即购票</a>-->
                             <a class="btn btn-danger" role="button" href="#"
-                                th:href="(${movie})?(@{/reservation(cinemaId=${cinema.id},movieId=${movie})}):(@{/movies(cinemaId=${cinema.id})})">立即购票</a>
+                                th:href="(${movie})?(@{/session(cinemaId=${cinema.id},movieId=${movie})}):(@{/movies(cinemaId=${cinema.id})})">立即购票</a>
                                 
                         </div>
                     </div>

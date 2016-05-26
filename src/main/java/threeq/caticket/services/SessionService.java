@@ -1,5 +1,6 @@
 package threeq.caticket.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,16 @@ public class SessionService {
 	public SessionService() {
         super();
     }
-	
+	public List<Session> findByDate(Date date) {
+		return this.sessionRepository.findByDate(date);
+	}
+    
 	public List<Session> findAll() {
         return this.sessionRepository.findAll();
     }
 
-    public Session findByName(final String movieName, final String cinemaName) {
-        return this.sessionRepository.findByName(movieName, cinemaName);
+    public Session findByMandC(final int movieId, final int cinemaId) {
+        return this.sessionRepository.findByMandC(movieId, cinemaId);
     }
     
     public Session findById(final int id) {

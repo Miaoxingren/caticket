@@ -7,13 +7,12 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
-
 public class SpringServletInitializer extends AbstractDispatcherServletInitializer {
 	
 	public SpringServletInitializer() {
         super();
     }
-	
+
 	protected WebApplicationContext createServletApplicationContext() {
         final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(SpringWebConfig.class);
@@ -23,7 +22,7 @@ public class SpringServletInitializer extends AbstractDispatcherServletInitializ
     protected WebApplicationContext createRootApplicationContext() {
         return null;
     }
-
+    
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
@@ -36,8 +35,6 @@ public class SpringServletInitializer extends AbstractDispatcherServletInitializ
         encodingFilter.setForceEncoding(true);
         return new Filter[] { encodingFilter };
     }
-   
 
-	
 
 }

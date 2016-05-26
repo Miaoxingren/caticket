@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/layout.css" th:href="@{/css/layout.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/caticket.css" th:href="@{/css/caticket.css}" />
-    <script src="../../js/jquery-2.2.3.min.js" th:src="@{/js/jquery-2.2.3.min.js}"></script>
 </head>
 
 <body>
@@ -32,6 +32,7 @@
                 </div>
             </nav>
         </header>
+
         <div class="content lang-cn" th:fragment="content">
             <div class="container-fluid">
                 <div class="row">
@@ -39,24 +40,23 @@
                         <div><img class="logo" alt="logo" src="../../images/logo-128.png" th:src="@{/images/logo-128.png}">
                         </div>
                         <div><h1>CATICKET</h1></div>
-                        <div id="errorInfo">
-                            <p th:text="${errorInfoLogin}"></p>
-                        </div>
-                        <form action="#" th:action="@{/user/login}" th:object="${user}">
-                            <input type="text" th:field="*{id}" name="id" value="1" style="display:none">
-                            <div class="form-group">
-                                <label for="name">name</label>
-                                <input type="text" th:field="*{name}" name="name" class="form-control" placeholder="name">
+                        <div th:if="${error}" th:text="${error}"></div>
+                        <form class="user-form" action="#" th:action="@{/register}" method="post" th:object="${user}">
+                            <div class="form-group input-user">
+                                <span class="icon-user vertical-center"></span>
+                                <input type="text" class="form-control" placeholder="User Name" th:placeholder="#{caticket.username}" th:field="*{username}">
                             </div>
-                            <div class="form-group">
-                                <label for="password">password</label>
-                                <input type="password" th:field="*{password}" name="password" class="form-control" placeholder="password">
+                            <div class="form-group input-pwd">
+                                <span class="icon-key vertical-center"></span>
+                                <input type="password" class="form-control" placeholder="Password" th:placeholder="#{caticket.password}" th:field="*{password}">
                             </div>
-                            <div>
-                                <button type="submit" class="submit">SIGN IN</button>
+                            <div class="form-group input-pwd-repeat">
+                                <span class="icon-key vertical-center"></span>
+                                <input type="password" class="form-control" placeholder="Password Again" th:placeholder="#{caticket.pwdagain}">
                             </div>
+                            <div><button type="submit" class="joinus red-box" th:text="#{caticket.joinus}">JOIN US</button></div>
+                            <div><a role="button" class="btn signin red-box" href="#" th:href="@{/login}" th:text="#{caticket.signin}">SIGN IN</a></div>
                         </form>
-                        <a th:href="@{/user/register}" class="btn submit">SIGN UP</a>
                     </div>
                 </div>
             </div>
@@ -68,6 +68,7 @@
             </div>
         </footer>
     </div>
-    <script src="../../js/caticket.js" th:src="@{/js/caticket.js}" async></script>
+    <script src="../../js/caticket.js" async></script>
 </body>
+
 </html>

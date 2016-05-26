@@ -3,48 +3,69 @@ package threeq.caticket.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import threeq.caticket.entities.Chair;
 import threeq.caticket.entities.Line;
+import threeq.caticket.entities.Seat;
+import threeq.caticket.entities.SeatInfo;
+import threeq.caticket.entities.repositories.SeatRepository;
 
 @Service
 public class SeatService {
-	
-	private List<Line> lines;
+	@Autowired
+	private SeatRepository seatRepository;
 	
 	public SeatService() {
         super();
     }
 	
-	public Line createLine(int number) {
-		Line line = new Line();
-		line.setNumber(number);
-		line.setChairs(createChairs(9));
-		return line;
-	}
-	public List<Chair> createChairs(int cnt) {
-		List<Chair> chairs = new  ArrayList<Chair>();
-		for (int i = 0; i < cnt; i++) {
-			Chair chair = new Chair();
-			chair.setNumber(i);
-			chairs.add(chair);
+	private Seat findSeatById(final int id) {
+        return this.seatRepository.findById(id);
+    }
+	
+	public List<Line> createFromSeat(Seat seat) {
+		List<Line> temp = new ArrayList<Line>();
+		int lineCnt = seat.getLineCnt();
+		int chairCnt = seat.getChairCnt();
+		boolean[] seats = seat.getChairs();
+		for (int i = 1, k = 0; i <= lineCnt; ++i) {
+			Line line = new Line();
+			line.setNumber(i);
+			List<Chair> chairs = new  ArrayList<Chair>();
+			for (int j = 1; j <= chairCnt; ++j, ++k) {
+				Chair chair = new Chair();
+				chair.setLineNo(i);
+				chair.setNumber(j);
+				chair.setAvailable(seats[k]);
+				chairs.add(chair);
+			}
+			line.setChairs(chairs);
+			temp.add(line);
 		}
-		return chairs;
+		return temp;
 	}
 	
-	public List<Line> findAll() {
-		if (this.lines == null) {
-			this.lines = new ArrayList<Line>();
-			for (int i = 1; i <= 7; i++) {
-				this.lines.add(createLine(i));
-			}
+	public List<Line> findById(final int id) {
+		Seat seat = this.findSeatById(id);
+		return createFromSeat(seat);
+	}
+	
+	public boolean updateSeat(final int seatId, final SeatInfo seatInfo) {
+		Seat seat = this.findSeatById(seatId);
+		int chairCnt = seat.getChairCnt();
+		String[] seats = seat.getChairstr().split(",");
+		String[] selected = seatInfo.getSeats().split(",");
+		for (int i = 0, cnt = seatInfo.getSeatCnt(); i < cnt; ++i) {
+			String[] temp = selected[i].split("-");
+			int line = Integer.parseInt(temp[0]);
+			int chair = Integer.parseInt(temp[1]);
+			int index = (line - 1) * chairCnt + chair - 1;
+			seats[index] = "0";
 		}
-        return this.lines;
-    }
-
-    public Line findByLine(final int line) {
-        return this.lines.get(line);
-    }
-    
+		String chairs = String.join(",", seats);
+		return this.seatRepository.updateSeat(seatId, chairs);
+	}
+	
 }

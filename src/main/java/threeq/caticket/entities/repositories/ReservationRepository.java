@@ -24,28 +24,37 @@ public class ReservationRepository {
 		public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Reservation reservation = new Reservation();
 			reservation.setId(rs.getInt("id"));
-			reservation.setCinemaName(rs.getString("cinemaName"));
-			reservation.setMovieName(rs.getString("movieName"));
-			reservation.setTicketCnt(rs.getInt("ticketCnt"));
-			String position = rs.getString("position");
-			reservation.setPosition(position.split(":"));
+			reservation.setSessionId(rs.getInt("sessionId"));
+			reservation.setUserId(rs.getInt("userId"));
+			reservation.setPrice(rs.getFloat("price"));
+			reservation.setSeatCnt(rs.getInt("seatCnt"));
+			reservation.setSeats(rs.getString("seats"));
+			reservation.setPaied(rs.getBoolean("isPaied"));
 		    return reservation;
 		}
 	}
-	
-	public List<Reservation> findAll() {
-		return jdbcTemplate.query("select * from reservations", new ReservationMapper());
-	}
-	
-	public Reservation findByName(String movieName, String cinemaName) {
-		return jdbcTemplate.queryForObject("select * from reservations where movieName = ? and cinemaName = ?",
-				new Object[]{movieName, cinemaName},
+
+	public List<Reservation> findByUserId(final int userId) {
+		return jdbcTemplate.query("select * from reservations where userId = ?",
+				new Object[]{userId},
 				new ReservationMapper());
 	}
-	
-	public Reservation findById(int id) {
+
+	public Reservation findById(final int id) {
 		return jdbcTemplate.queryForObject("select * from reservations where id = ?",
 				new Object[]{id},
 				new ReservationMapper());
+	}
+
+	public boolean addOne(final Reservation reservation) {
+		int res = jdbcTemplate.update("insert into reservations " +
+				"(userId, sessionId, seatCnt, seats, price, isPaied) values (?, ?, ?, ?, ?, ?)",
+				reservation.getUserId(),
+				reservation.getSessionId(),
+				reservation.getSeatCnt(),
+				reservation.getSeats(),
+				reservation.getPrice(),
+				reservation.getPaied());
+		return res == 1;
 	}
 }

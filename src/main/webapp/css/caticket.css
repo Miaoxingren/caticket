@@ -84,12 +84,27 @@
     border-bottom: 1px solid white;
 }
 
+.session-item .badge {
+    margin-left: 10px;
+    font-size: 1.05em;
+}
+
 .session-table .session-item td {
     padding: 15px;
 }
 
-.session-table .session-sale {
+.session-table .session-sale,
+.session-none {
     text-align: center;
+}
+
+.session-none .icon-face-open-mouth-eyebrows {
+    font-size: 2em;
+}
+
+.session-none span {
+    color: #20DA9B;
+    vertical-align: middle;
 }
 
 /* style for reservation */
@@ -168,9 +183,20 @@
     font-size: 2em;
 }
 
-.choose-seat .seat-table td.line {
+.choose-seat .seat-table .line {
     font-size: 1.5em;
     text-align: left;
+}
+
+.seat-taken {
+    color: gray;
+}
+
+.seat-error {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: red;
 }
 
 .choose-seat .seat-state {
@@ -182,14 +208,14 @@
     margin-right: 10px;
 }
 
-.choose-seat .seat-state span.icon-task {
+.choose-seat .seat-state .icon-task {
     margin-left: 40px;
 }
 
 /* style for reservation checking */
 
 .reservation-check,
-.reservation-pay a {
+.reservation-pay button {
     font-size: 1.5em;
 }
 
@@ -200,7 +226,7 @@
 .reservation-check .check-seats span {
     margin-right: 20px;
 }
-.reservation-check .check-seats span.first {
+.reservation-check .check-seats .first {
     margin-right: 0;
 }
 
@@ -274,17 +300,78 @@
     height: auto;
 }
 
-.submit,
-.submit:focus {
+.red-box,
+.red-box:focus {
     width: 100%;
     font-size: 1.2em;
     padding: 10px;
+    color: white;
+    line-height: 1;
     background-color: transparent;
     border: 1px solid #F26262;
     border-radius: 40px;
-    color: #fff;
 }
 
-.submit:hover {
+.red-box:hover {
     background-color: #FE365D;
+}
+
+/* style for reservation */
+
+.order-state {
+    text-align: center;
+}
+
+.order-state li a,
+.user-subnav li a {
+    display: block;
+    margin: 20px 0;
+    color: white;
+    text-decoration: none;
+}
+
+.order-state li a:hover,
+.user-subnav li a:hover {
+    color: #F26262;
+}
+
+.info-cinema,
+.info-session,
+.order-info {
+    margin-bottom: 20px;
+}
+
+.order-info p,
+.order-seat p {
+    margin-bottom: 20px;
+}
+
+.order-seat .label {
+    font-size: 1em;
+    margin-right: 20px;
+}
+
+.panel-default {
+    border: 1px solid #F5885E;
+    border-radius: 15px;
+}
+
+.panel-default > .panel-heading {
+    border-radius: 10px 10px 0 0;
+    background-color: #F5885E;
+}
+
+.badge {
+    font-size: 0.8em;
+}
+
+/* style for user edit page */
+
+.user-edit-info {
+    margin: 20px;
+    text-align: center;
+}
+
+.logout {
+    border: none;
 }

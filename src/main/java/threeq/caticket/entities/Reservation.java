@@ -2,10 +2,12 @@ package threeq.caticket.entities;
 
 public class Reservation {
 	private int id;
-	private String movieName;
-	private String cinemaName;
-	private int ticketCnt;
-	private String[] position;
+	private int userId;
+	private int sessionId;
+	private int seatCnt;
+	private String seats;
+	private float price;
+	private boolean paied;
 	
 	public Reservation() {
 		super();
@@ -17,29 +19,54 @@ public class Reservation {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getMovieName() {
-		return movieName;
+
+	public int getUserId() {
+		return userId;
 	}
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getCinemaName() {
-		return cinemaName;
+
+	public int getSessionId() {
+		return sessionId;
 	}
-	public void setCinemaName(String cinemaName) {
-		this.cinemaName = cinemaName;
+
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
 	}
-	public int getTicketCnt() {
-		return ticketCnt;
+
+	public int getSeatCnt() {
+		return seatCnt;
 	}
-	public void setTicketCnt(int ticketCnt) {
-		this.ticketCnt = ticketCnt;
+
+	public void setSeatCnt(int seatCnt) {
+		this.seatCnt = seatCnt;
 	}
-	public String[] getPosition() {
-		return position;
+
+	public String getSeats() {
+		return seats;
 	}
-	public void setPosition(String[] position) {
-		this.position = position;
+
+	public void setSeats(String seats) {
+		this.seats = seats;
 	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public boolean getPaied() {
+		return paied;
+	}
+
+	public void setPaied(boolean paied) {
+		this.paied = paied;
+	}
+
 
 }
