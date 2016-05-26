@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/layout.css" th:href="@{/css/layout.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/caticket.css" th:href="@{/css/caticket.css}" />
-    <script src="../../js/jquery-2.2.3.min.js" th:src="@{/js/jquery-2.2.3.min.js}"></script>
 </head>
 
 <body>
@@ -32,35 +32,33 @@
                 </div>
             </nav>
         </header>
-        <div class="content lang-cn">
+
+        <div class="content lang-cn" th:fragment="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 user-activity">
                         <div><img class="logo" alt="logo" src="../../images/logo-128.png" th:src="@{/images/logo-128.png}">
                         </div>
                         <div><h1>CATICKET</h1></div>
-                        <div>
-                            <p th:text="${errorInfoLogin}"></p>
-                        </div>
-                        <form action="#" th:action="@{/user/register}" th:object="${user}">
-                            <input type="text" th:field="*{id}" name="id" value="1" style="display:none">
+                        <div th:if="${error}" th:text="${error}"></div>
+                        <div class="pwderror invisible" th:text="#{caticket.pwderror}">密码不一致</div>
+                        <div class="lengtherror invisible" th:text="#{caticket.lengtherror}">用户名密码长度至少为4位且不含空格</div>
+                        <form class="user-form" action="#" th:action="@{/register}" method="post" th:object="${user}">
                             <div class="form-group">
-                                <label for="name">name</label>
-                                <input type="text" th:field="*{name}" name="name" class="form-control" placeholder="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">password</label>
-                                <input type="password" th:field="*{password}" name="password" class="form-control" placeholder="password" onfocus="document.getElementById('errorInfo').innerHTML=''">
+                                <span class="icon-user vertical-center"></span>
+                                <input type="text" class="form-control input-username " placeholder="User Name" th:placeholder="#{caticket.username}" th:field="*{username}" required="required">
                             </div>
                             <div class="form-group">
-                                <label for="password">password</label>
-                                <input type="password" name="passwordAgain" class="form-control" placeholder="password again">
+                                <span class="icon-key vertical-center"></span>
+                                <input type="password" class="form-control input-password" placeholder="Password" th:placeholder="#{caticket.password}" th:field="*{password}" required="required">
                             </div>
-                            <div>
-                                <button type="submit" class="submit">SIGN UP</button>
+                            <div class="form-group">
+                                <span class="icon-key vertical-center"></span>
+                                <input type="password" class="form-control input-pwd-repeat" placeholder="Password Again" th:placeholder="#{caticket.pwdagain}" required="required">
                             </div>
+                            <div><button type="submit" class="joinus red-box" th:text="#{caticket.joinus}">JOIN US</button></div>
+                            <div><a role="button" class="btn signin red-box" href="#" th:href="@{/login}" th:text="#{caticket.signin}">SIGN IN</a></div>
                         </form>
-                        <a th:href="@{/user/login}" class="btn submit">SIGN IN</a>
                     </div>
                 </div>
             </div>
@@ -72,5 +70,7 @@
             </div>
         </footer>
     </div>
+    <script src="../../js/caticket.js" th:src="@{/js/caticket.js}" async></script>
 </body>
+
 </html>

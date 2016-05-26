@@ -116,8 +116,12 @@ CATICKET.seatHandler = (function () {
     };
 }());
 
+
 (function(){
-    var seatTable = document.querySelector(".seat-table"),
+    var eventHandler = CATICKET.eventHandler,
+        seatHandler = CATICKET.seatHandler,
+        classHandler = CATICKET.classHandler,
+        seatTable = document.querySelector(".seat-table"),
         seatSelected = document.querySelector(".check-seats"),
         seatError = document.querySelector(".seat-error"),
         seatPrice = document.querySelector(".info-session-price"),
@@ -126,7 +130,10 @@ CATICKET.seatHandler = (function () {
         seatCnt = document.querySelector(".input-seatcnt"),
         totalPrice = document.querySelector(".input-price"),
         seats = document.querySelector(".input-seats");
-    CATICKET.eventHandler.addEvent(seatTable, "click", function (event) {
+    if (!seatTable) {
+        return;
+    }
+    eventHandler.addEvent(seatTable, "click", function (event) {
         var event = event || window.event,
             target = event.target || event.srcElement,
             seat = {
@@ -137,15 +144,15 @@ CATICKET.seatHandler = (function () {
             seatIndex,
             singlePrice = seatPrice.innerHTML - "";
         if (target.nodeName.toLowerCase() === "span") {
-            if (CATICKET.classHandler.hasClass(target, "seat-taken")) {
+            if (classHandler.hasClass(target, "seat-taken")) {
                 return;
             }
-            if (CATICKET.seatHandler.getSeatCnt() >= 4 && CATICKET.classHandler.hasClass(target, "icon-ipad")) {
-                CATICKET.classHandler.removeClass(seatError, "invisible");
+            if (seatHandler.getSeatCnt() >= 4 && classHandler.hasClass(target, "icon-ipad")) {
+                classHandler.removeClass(seatError, "invisible");
                 return;
             }
-            if (CATICKET.classHandler.toggleClass(target, "icon-ipad")) {
-                CATICKET.seatHandler.addSeat(seat);
+            if (classHandler.toggleClass(target, "icon-ipad")) {
+                seatHandler.addSeat(seat);
                 seatNode = document.createElement("span");
                 seatNode.setAttribute("class", "label label-info");
                 seatNode.innerHTML = seat.line + "排" + seat.chair + "座";
@@ -154,35 +161,57 @@ CATICKET.seatHandler = (function () {
                 seatCost.innerHTML = seatCost.innerHTML - "" + singlePrice;
                 seatCnt.value = ticketCount.innerHTML;
                 totalPrice.value = seatCost.innerHTML;
-                seats.value = CATICKET.seatHandler.getSeatStr();
+                seats.value = seatHandler.getSeatStr();
             }
-            if (CATICKET.classHandler.toggleClass(target, "icon-task")) {
-                seatIndex = CATICKET.seatHandler.removeSeat(seat);
+            if (classHandler.toggleClass(target, "icon-task")) {
+                seatIndex = seatHandler.removeSeat(seat);
                 if (seatIndex !== -1) {
                     seatSelected.removeChild(seatSelected.childNodes[seatIndex + 1]);
                     ticketCount.innerHTML = ticketCount.innerHTML - "" - 1;
                     seatCost.innerHTML = seatCost.innerHTML - "" - singlePrice;
                     seatCnt.value = ticketCount.innerHTML;
                     totalPrice.value = seatCost.innerHTML;
-                    seats.value = CATICKET.seatHandler.getSeatStr();
+                    seats.value = seatHandler.getSeatStr();
                 }
-                if (CATICKET.seatHandler.getSeatCnt() < 4) {
-                    CATICKET.classHandler.addClass(seatError, "invisible");
+                if (seatHandler.getSeatCnt() < 4) {
+                    classHandler.addClass(seatError, "invisible");
                     return;
                 }
             }
         }
     });
 }());
-/*
+
+
 (function(){
-    var signin = document.querySelector(".user-activity .signin"),
-        joinus = document.querySelector(".user-activity .joinus"),
-        pwdRepeat = document.querySelector(".input-pwd-repeat");
-    CATICKET.eventHandler.addEvent(joinus, "click", function (event) {
-        if (CATICKET.classHandler.hasClass(pwdRepeat, "invisible")) {
-            CATICKET.classHandler.removeClass(pwdRepeat, "invisible");
-        }
-    });
+    var classHandler = CATICKET.classHandler,
+        signin = document.querySelector(".signin"),
+        joinus = document.querySelector(".joinus"),
+        username = document.querySelector(".input-username"),
+        password = document.querySelector(".input-password"),
+        pwdRepeat = document.querySelector(".input-pwd-repeat")
+        pwderror = document.querySelector(".pwderror"),
+        lengtherror = document.querySelector(".lengtherror"),
+        validate = function () {
+            var val1 = password.value,
+                val2 = pwdRepeat.value,
+                val3 = username.value;
+            if (val1.replace(" ", "") !== val1 || val2.replace(" ", "") !== val2 || val3.replace(" ", "") !== val3 ||
+                val1.length < 4 || val2.length < 4 || val3.length < 4) {
+                classHandler.removeClass(lengtherror, "invisible");
+                joinus.disabled = true;
+            }
+            if (val1 !== val2) {
+                classHandler.removeClass(pwderror, "invisible");
+                joinus.disabled = true;
+            } else {
+                classHandler.addClass(lengtherror, "invisible");
+                classHandler.addClass(pwderror, "invisible");
+                joinus.disabled = false;
+            }
+        };
+    if (password) {
+        pwdRepeat.onblur = validate;
+        password.onblur = validate;
+    }
 }());
-*/

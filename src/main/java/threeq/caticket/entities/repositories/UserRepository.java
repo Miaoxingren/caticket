@@ -32,7 +32,7 @@ public class UserRepository {
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
 			user.setId(rs.getInt("id"));
-			user.setName(rs.getString("name"));
+			user.setUsername(rs.getString("username"));
 			user.setPassword(rs.getString("password"));
 		    return user;
 		}
@@ -46,7 +46,7 @@ public class UserRepository {
 	public User findByName(String name) {
 		//使用queryforlist查询，结果为空会抛出错误
 		try {
-			return jdbcTemplate.queryForObject("select * from users where name = ?",
+			return jdbcTemplate.queryForObject("select * from users where username = ?",
 					new Object[]{name},
 					new UserMapper());
 		} catch(Exception e) {
@@ -66,7 +66,7 @@ public class UserRepository {
 
 	public int insert(String name, String password) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		String sql = "insert into users (name, password) values (?, ?)";
+		String sql = "insert into users (username, password) values (?, ?)";
 		int updateCount = jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(sql, new String[] {"id"});
@@ -79,10 +79,15 @@ public class UserRepository {
 		return ((updateCount > 0) ? id : -1);
 	}
 	
+	public List<User> findElseByName(int id, String name) {
+		return jdbcTemplate.query("select * from users where name=? and id!=?",
+				new Object[]{name, id}, new UserMapper());
+	}
+	
 	public boolean updateName(int id, String name) {
 		boolean temp = false;
-		if (name != "") {
-			String sql = "update users set name=? where id=?";
+		if (name != "" || !findElseByName(id, name).isEmpty()) {
+			String sql = "update users set username=? where id=?";
 			int updateCount = jdbcTemplate.update(sql, new Object[]{name, id});
 			temp = (updateCount > 0) ? true:false;
 		}

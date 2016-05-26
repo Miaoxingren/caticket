@@ -72,8 +72,7 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/reservation")
-	public String showReservation(
-			@ModelAttribute("userId") int userId, Model model) {
+	public String showReservation(@ModelAttribute("userId") int userId, Model model) {
 		if (userId == -1) {
 			return "redirect:/login";
 		}

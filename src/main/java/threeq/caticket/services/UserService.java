@@ -64,17 +64,15 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Collection<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
 		User user = new User();
-		try {
-			user = userRepository.findByName(username);
-			if (user != null) {
-				SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
-				auths.add(authority);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		user = userRepository.findByName(username);
+		if (user != null) {
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+			auths.add(authority);
+			return new org.springframework.security.core.userdetails.User(
+					user.getUsername(), user.getPassword(), true, true, true, true,
+					auths);
+		} else {
+			throw new UsernameNotFoundException(username);  
 		}
-		return new org.springframework.security.core.userdetails.User(
-				user.getName(), user.getPassword(), true, true, true, true,
-				auths);
 	}
 }

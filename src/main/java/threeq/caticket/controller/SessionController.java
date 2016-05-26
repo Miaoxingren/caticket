@@ -54,37 +54,8 @@ public class SessionController {
 		model.addAttribute("allSessions", this.sessionService.findByDate(date));
     }
 
-	@RequestMapping(value="/session")//, params={"cinemaId", "movieId"})
-	public String showAllSessions(/*
-			@RequestParam("cinemaId") int cinemaId,
-			@RequestParam("movieId") int movieId, 
-			*/
-			Model model) {
-		/*
-		java.util.Date now = new java.util.Date();
-		Date today = new Date(now.getTime());
-		Date tomorrow = new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);
-		Date aftertomorrow = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
-		model.addAttribute("today", today);
-		model.addAttribute("tomorrow", tomorrow);
-		model.addAttribute("aftertomorrow", aftertomorrow);
-		*/
+	@RequestMapping(value="/session")
+	public String showAllSessions(Model model) {
 		return "movie-sessions";
 	}
-	/*
-	@RequestMapping(value="/sessions", params={"cinemaId", "movieId", "order"})
-	public String showAllSessions(
-			@RequestParam("cinemaId") int cinemaId,
-			@RequestParam("movieId") int movieId,
-			@RequestParam("order") int order, Model model) {
-		java.util.Date now = new java.util.Date();
-		Date today = new Date(now.getTime());
-		Date tomorrow = new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);
-		Date aftertomorrow = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
-		model.addAttribute("today", today);
-		model.addAttribute("tomorrow", tomorrow);
-		model.addAttribute("aftertomorrow", aftertomorrow);
-		return "movie-sessions";
-	}
-	*/
 }

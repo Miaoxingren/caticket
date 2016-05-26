@@ -65,7 +65,7 @@
                                 <td class="line" th:text="${line.number} + #{caticket.line}">1排</td>
                                 <td class="seat" line="1" chair="1" th:each="chair : ${line.chairs}"
                                     th:attr="line=${line.number}, chair=${chair.number}">
-                                    <span th:class="${chair.available}? 'icon-ipad' : 'seat-taken icon-ipad'"></span>
+                                    <span class="icon-ipad" th:class="${chair.available}? 'icon-ipad' : 'seat-taken icon-ipad'"></span>
                                 </td>
                             </tr>
 
