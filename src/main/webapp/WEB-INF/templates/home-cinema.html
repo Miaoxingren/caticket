@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{caticket.title}">CATICKET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="icon" href="../../images/favicon.png" th:href="@{/images/favicon.png}" />
     <!--[if IE]><link rel="shortcut icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}" /><![endif]-->
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
@@ -14,25 +14,9 @@
 
 <body>
     <div class="main">
-        <header class="main-header lang-en" th:replace="layout :: header">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#" th:href="@{/}">
-                            <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
-                            <span class="brand" th:text="#{caticket.title}">CATICKET</span>
-                        </a>
-                    </div>
-                    <div class="nav-user">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" th:href="@{/user}"><span class="icon-user"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
-		
-        <div class="content lang-cn" th:fragment="content">
+        <div class="content lang-cn">
             <header class="content-header">
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav child-nav">
@@ -48,7 +32,6 @@
                     </form>
                 </nav>
             </header>
-
             <div class="cinema-list">
                 <div class="container-fluid" th:remove="all-but-first">
                     <div class="row cinema-item" th:each="cinema : ${cinemas}">
@@ -59,21 +42,13 @@
                             </section>
                         </div>
                         <div class="col-xs-4 cinema-sale">
-                            <!--<a class="btn btn-danger" role="button" href="#"
-                                th:href="@{/movies(cinemaId=${cinema.id})}">立即购票</a>-->
-                            <a class="btn btn-danger" role="button" href="#"
-                                th:href="(${movie})?(@{/session(cinemaId=${cinema.id},movieId=${movie})}):(@{/movies(cinemaId=${cinema.id})})">立即购票</a>
-                                
+                            <a class="btn btn-danger" role="button" href="#" th:href="(${movie})?(@{/session(cinemaId=${cinema.id},movieId=${movie})}):(@{/movies(cinemaId=${cinema.id})})">立即购票</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <footer class="main-footer lang-en" th:replace="layout :: footer">
-            <div>
-                <span th:text="#{caticket.copyright}">Copyright © 2016 by ThreeQ</span>
-            </div>
+        <footer th:replace="layout :: footer">
         </footer>
     </div>
 </body>

@@ -80,13 +80,13 @@ public class UserRepository {
 	}
 	
 	public List<User> findElseByName(int id, String name) {
-		return jdbcTemplate.query("select * from users where name=? and id!=?",
+		return jdbcTemplate.query("select * from users where username=? and id!=?",
 				new Object[]{name, id}, new UserMapper());
 	}
 	
 	public boolean updateName(int id, String name) {
 		boolean temp = false;
-		if (name != "" || !findElseByName(id, name).isEmpty()) {
+		if (name != "" && findElseByName(id, name).isEmpty()) {
 			String sql = "update users set username=? where id=?";
 			int updateCount = jdbcTemplate.update(sql, new Object[]{name, id});
 			temp = (updateCount > 0) ? true:false;

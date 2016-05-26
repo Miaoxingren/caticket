@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{caticket.title}">CATICKET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="icon" href="../../images/favicon.png" th:href="@{/images/favicon.png}" />
     <!--[if IE]><link rel="shortcut icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}" /><![endif]-->
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
@@ -14,25 +14,9 @@
 
 <body>
     <div class="main">
-        <header class="main-header lang-en" th:replace="layout :: header">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#" th:href="@{/}">
-                            <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
-                            <span class="brand" th:text="#{caticket.title}">CATICKET</span>
-                        </a>
-                    </div>
-                    <div class="nav-user">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" th:href="@{/user}"><span class="icon-user"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
-
-        <div class="content lang-cn" th:fragment="content">
+        <div class="content lang-cn">
             <header class="content-header">
                 <div class="session-movie-cinema">
                     <h1 th:text="${movie.name}">猎神：冬日之战</h1>
@@ -42,24 +26,20 @@
                     <nav class="navbar navbar-default">
                         <ul class="nav navbar-nav child-nav">
                             <li class="active first" th:class="(${order} == 1) ? 'active first' : 'first'">
-                                <a href="#" th:text="#{caticket.today} + '('+ ${#calendars.format(today, 'MM-dd')} + ')'"
-                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=1)}">今天(04-26)</a>
+                                <a href="#" th:text="#{caticket.today} + '('+ ${#calendars.format(today, 'MM-dd')} + ')'" th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=1)}">今天(04-26)</a>
                             </li>
                             <li><a class="disabled">|</a></li>
                             <li th:class="(${order} == 2) ? 'active'">
-                                <a href="#" th:text="#{caticket.tomorrow} + '('+ ${#calendars.format(tomorrow, 'MM-dd')} + ')'"
-                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=2)}">明天(04-27)</a>
+                                <a href="#" th:text="#{caticket.tomorrow} + '('+ ${#calendars.format(tomorrow, 'MM-dd')} + ')'" th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=2)}">明天(04-27)</a>
                             </li>
                             <li><a class="disabled">|</a></li>
                             <li th:class="(${order} == 3) ? 'active'">
-                                <a href="#" th:text="#{caticket.aftertomorrow} + '(' + ${#calendars.format(aftertomorrow, 'MM-dd')} + ')'"
-                                    th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=3)}">后天(04-28)</a>
+                                <a href="#" th:text="#{caticket.aftertomorrow} + '(' + ${#calendars.format(aftertomorrow, 'MM-dd')} + ')'" th:href="@{/session(movieId=${movie.id},cinemaId=${cinema.id},order=3)}">后天(04-28)</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </header>
-
             <div class="session-list" th:if="${not #lists.isEmpty(allSessions)}">
                 <table class="session-table table">
                     <tbody th:remove="all-but-first">
@@ -68,22 +48,16 @@
                             <td class="session-lang"><span th:text="${sessionItem.language}">英语</span><span th:if="${sessionItem.isThreeD}" class="badge">3D</span></td>
                             <td class="session-room" th:text="${sessionItem.room} + #{caticket.room}">1号厅</td>
                             <td class="session-price" th:text="#{caticket.money} + ${sessionItem.price}">￥35</td>
-                            <td class="session-sale"><a class="btn btn-danger" role="button" href="#"
-                                th:href="@{/seat(sessionId=${sessionItem.id})}" th:text="#{caticket.buybyseat}">选座购票</a></td>
+                            <td class="session-sale"><a class="btn btn-danger" role="button" href="#" th:href="@{/seat(sessionId=${sessionItem.id})}" th:text="#{caticket.buybyseat}">选座购票</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             <div class="session-none" th:if="${#lists.isEmpty(allSessions)}">
                 <h1><span class="icon-face-open-mouth-eyebrows vertical-center"></span><span th:th:text="#{caticket.nosession}">该日放映场次已无</span></h1>
             </div>
         </div>
-
-        <footer class="main-footer lang-en" th:replace="layout :: footer">
-            <div>
-                <span th:text="#{caticket.copyright}">Copyright © 2016 by ThreeQ</span>
-            </div>
+        <footer th:replace="layout :: footer">
         </footer>
     </div>
 </body>

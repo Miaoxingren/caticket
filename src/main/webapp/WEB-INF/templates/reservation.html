@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{caticket.title}">CATICKET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="icon" href="../../images/favicon.png" th:href="@{/images/favicon.png}" />
     <!--[if IE]><link rel="shortcut icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}" /><![endif]-->
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
@@ -14,24 +14,8 @@
 
 <body>
     <div class="main">
-        <header class="main-header lang-en" th:replace="layout :: header">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#" th:href="@{/}">
-                            <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
-                            <span class="brand" th:text="#{caticket.title}">CATICKET</span>
-                        </a>
-                    </div>
-                    <div class="nav-user">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" th:href="@{/user}"><span class="icon-user"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
-
         <div class="content lang-cn">
             <header class="content-header" th:replace="setting :: child-header">
                 <nav class="navbar navbar-default">
@@ -42,13 +26,14 @@
                     </ul>
                 </nav>
             </header>
-
-        	<div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-2 order-state">
                         <ul>
                             <li><a href="" th:text="#{caticket.finished}">已完成</a></li>
-                            <li><hr /></li>
+                            <li>
+                                <hr />
+                            </li>
                             <li><a href="" th:text="#{caticket.unpaied}">待支付</a></li>
                         </ul>
                     </div>
@@ -59,7 +44,7 @@
                                 <div class="row" th:with="movie=${movieService.findById(sessionItem.movieId)}">
                                     <div class="col-md-3 movie-post">
                                         <a href="#" th:href="@{/movies(movieId=${movie.id})}">
-                                            <img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{/images/TheHuntsman.jpg}"/>
+                                            <img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{/images/TheHuntsman.jpg}" />
                                         </a>
                                     </div>
                                     <div class="col-md-9 order-info">
@@ -74,32 +59,25 @@
                                         <div class="info-session">
                                             <p th:text="#{caticket.playtime} + ${#calendars.format(sessionItem.beginTime, 'HH:mm a') + '-' + #calendars.format(sessionItem.endTime, 'HH:mm a')}">放映时间：9:00am-10:30am</p>
                                             <p><span th:text="#{caticket.language} + ${sessionItem.language}">语言：英语</span>
-                                            <span th:if="${sessionItem.isThreeD}" class="badge">3D</span></p>
-                                            
+                                                <span th:if="${sessionItem.isThreeD}" class="badge">3D</span></p>
                                             <p th:text="#{caticket.playroom} + ${sessionItem.room} + #{caticket.room}">放映厅：1号厅</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12 order-seat" th:with="seats=${reservationService.getSeatsById(reservation.id)}">
                                         <p th:text="#{caticket.seats}">选座信息：</p>
-                                        <p ><span class="label label-info" th:each="seat : ${seats}" th:text="${seat.lineNo} + #{caticket.line} + ${seat.number} + #{caticket.chair}">1排1座</span></p>
+                                        <p><span class="label label-info" th:each="seat : ${seats}" th:text="${seat.lineNo} + #{caticket.line} + ${seat.number} + #{caticket.chair}">1排1座</span></p>
                                         <p th:text="#{caticket.total} + ${reservation.price}">总价：￥105</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
         </div>
-
-        <footer class="main-footer lang-en" th:replace="layout :: footer">
-            <div>
-                <span th:text="#{caticket.copyright}">Copyright © 2016 by ThreeQ</span>
-            </div>
+        <footer th:replace="layout :: footer">
         </footer>
-        
     </div>
-    <script src="../../js/caticket.js" th:src="@{/js/caticket.js}" async></script>
 </body>
 
 </html>

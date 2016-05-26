@@ -4,65 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{caticket.title}">CATICKET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="icon" href="../../images/favicon.png" th:href="@{/images/favicon.png}" />
     <!--[if IE]><link rel="shortcut icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}" /><![endif]-->
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/layout.css" th:href="@{/css/layout.css}" />
     <link rel="stylesheet" type="text/css" href="../../css/caticket.css" th:href="@{/css/caticket.css}" />
-     <link rel="stylesheet" type="text/css" href="../../css/movie_info.css" th:href="@{/css/movie_info.css}" />
+    <link rel="stylesheet" type="text/css" href="../../css/movie_info.css" th:href="@{/css/movie_info.css}" />
 </head>
 
 <body>
     <div class="main">
-        <header class="main-header lang-en" th:replace="layout :: header">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#" th:href="@{/}">
-                            <img class="logo" alt="logo" src="../../images/logo.png" th:src="@{/images/logo.png}">
-                            <span class="brand" th:text="#{caticket.title}">CATICKET</span>
-                        </a>
-                    </div>
-                    <div class="nav-user">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" th:href="@{/user}"><span class="icon-user"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
-
         <div class="moive-info lang-cn">
             <div class="row">
                 <div class="col-xs-5 movie-poster">
-                    <img class="img-poster" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{/images/TheHuntsman.jpg}"/>
+                    <img class="img-poster" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{/images/TheHuntsman.jpg}" />
                 </div>
                 <div class="col-xs-7 moive-details">
                     <div>
-                        
                         <h1 class="moive-name" th:text="${movie.name}">猎神：冬日之战<span class="label label-info moive-score" th:text="${movie.score}">7.8分</span></h1>
-                         <h2 class="moive-date" th:text="${#calendars.format(movie.releaseTime, 'yyyy-MM-dd')} + #{caticket.release}">2016-07-14上映</h2>
+                        <h2 class="moive-date" th:text="${#calendars.format(movie.releaseTime, 'yyyy-MM-dd')} + #{caticket.release}">2016-07-14上映</h2>
                     </div>
                     <div>
-                        <h3 class="moive-type" th:text="#{caticket.movieType} + ${movie.printMovieTypes()}">类型：动作/冒险/剧情</h3><hr/>
-                        <h3 class="moive-duration" th:text="#{caticket.timeLength} + ${movie.timeLength}">时长：90分钟</h3> <hr/>
+                        <h3 class="moive-type" th:text="#{caticket.movieType} + ${movie.printMovieTypes()}">类型：动作/冒险/剧情</h3>
+                        <hr/>
+                        <h3 class="moive-duration" th:text="#{caticket.timeLength} + ${movie.timeLength}">时长：90分钟</h3>
+                        <hr/>
                         <!--<h3 class="moive-language" th:text="${movieLanguage}">语言：英语</h3><hr/>-->
-                        <h3 class="moive-director" th:text="#{caticket.doctors} + ${movie.printDoctors()}">导演：塞德里克.萨科</h3><hr/>
+                        <h3 class="moive-director" th:text="#{caticket.doctors} + ${movie.printDoctors()}">导演：塞德里克.萨科</h3>
+                        <hr/>
                     </div>
-                </div>                
+                </div>
             </div>
             <br/>
             <div class="movie-brief">
                 <div class="actor-list">
-                    <h3 th:text="#{caticket.actors}"></h3><br/>
+                    <h3 th:text="#{caticket.actors}"></h3>
+                    <br/>
                     <div>
-                         <ul th:each="actor : ${movie.actors}">
+                        <ul th:each="actor : ${movie.actors}">
                             <li><span class="label label-info moive-actor" th:text="${actor}">演员</span></li>
                         </ul>
                     </div>
                 </div>
-
                 <h3 th:text="#{caticket.detail}">简介：</h3>
                 <div>
                     <p th:text="${movie.detail}">
@@ -71,14 +57,9 @@
                 </div>
             </div>
         </div>
-
-        <footer class="main-footer lang-en" th:replace="layout :: footer">
-            <div>
-                <span th:text="#{caticket.copyright}">Copyright © 2016 by ThreeQ</span>
-            </div>
+        <footer th:replace="layout :: footer">
         </footer>
     </div>
-    <script src="../../js/caticket.js" th:src="@{/js/caticket.js}" async></script>
 </body>
 
 </html>
