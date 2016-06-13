@@ -14,6 +14,7 @@ public class Movie {
 	private String detail;
 	private float lowCost;
 	private float score;
+	private String post;
 	
 	public Movie() {
 		super();
@@ -117,6 +118,14 @@ public class Movie {
 	}
 	public void setScore(float score) {
 		this.score = score;
+	}
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
 	}
 
 }

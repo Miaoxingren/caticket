@@ -264,11 +264,18 @@
 }
 
 .actor-list {
-    margin-bottom: 12%;
+    margin-bottom: 100px;
 }
 
 .actor-list .label {
+    font-size: 1.05em;
     padding: 10px;
+}
+
+.movie-brief {
+    margin: 20px 0;
+    line-height: 1.5;
+    font-size: 1.05em;
 }
 
 .moive-actor {

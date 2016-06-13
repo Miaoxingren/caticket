@@ -28,6 +28,7 @@ public class MovieRepository {
 			movie.setName(rs.getString("name"));
 			movie.setScore(rs.getFloat("score"));
 			movie.setDetail(rs.getString("detail"));
+			movie.setPost(rs.getString("post"));
 			movie.setLowCost(rs.getFloat("lowCost"));
 			movie.setReleaseTime(rs.getDate("releaseTime"));
 			movie.setTimeLength(rs.getInt("timeLength"));

@@ -37,7 +37,7 @@
                     <div class="row movie-item" th:each="movie : ${movies}">
                         <div class="col-xs-4 movie-post">
                             <a href="#" th:href="@{/movies(movieId=${movie.id})}">
-                                <img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{/images/TheHuntsman.jpg}" />
+                                <img class="img-responsive" alt="TheHuntsman" src="../../images/TheHuntsman.jpg" th:src="@{'/images/' + ${movie.post}}" />
                             </a>
                         </div>
                         <div class="col-xs-4 movie-info">
