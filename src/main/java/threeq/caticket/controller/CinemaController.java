@@ -27,13 +27,23 @@ public class CinemaController {
 	}
 	
 	@ModelAttribute
-	public void cinemaControlMain(@RequestParam(value="movieId",required=false) Integer movieId, Model model) {
+	public void cinemaControlMain(@RequestParam(value="movieId",required=false) Integer movieId,
+			@RequestParam(value="searchkey",required=false) String searchkey,
+			Model model) {
 		List<Cinema> cinemas;
 		int movieid = 0;
-		if (movieId == null) {
+		if (searchkey != null) {
 			cinemas = this.cinemaService.findAll();
-		}
-		else {
+			for (int i = 0, len = cinemas.size(); i < len; len = cinemas.size()) {
+				if (!cinemas.get(i).getName().contains(searchkey)) {
+					cinemas.remove(i);
+				} else {
+					++i;
+				}
+			}
+		} else if (movieId == null) {
+			cinemas = this.cinemaService.findAll();
+		} else {
 			movieid = movieId.intValue();
 			cinemas = this.cinemaService.findPartById(this.movieService.findById(movieid).getCinemaList());
 		}

@@ -24,10 +24,10 @@
                         <li><a class="disabled">|</a></li>
                         <li><a href="#" th:href="@{/cinemas}" th:text="#{caticket.cinema}">影院</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" role="search">
+                    <form action="#" th:action="@{/movies}"  class="navbar-form navbar-right" role="search">
                         <div class="form-group search">
                             <span class="icon-magnifying-glass vertical-center"></span>
-                            <input type="search" class="form-control" placeholder="Search">
+                            <input name="searchkey" type="search" class="form-control" placeholder="Search">
                         </div>
                     </form>
                 </nav>
