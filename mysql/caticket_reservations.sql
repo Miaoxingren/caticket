@@ -31,7 +31,7 @@ CREATE TABLE `reservations` (
   `price` float NOT NULL,
   `isPaied` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (1,1,22,1,'4-7,5-6',95.5,1),(2,1,8,1,'1-9,3-7',35.5,1),(3,3,22,1,'3-4,4-4',95.5,1),(4,1,22,1,'6-5,1-3',95.5,1),(5,3,8,1,'6-6,4-6',35.5,1),(6,1,22,1,'7-8,2-4',95.5,1),(7,2,22,1,'7-8,3-5',95.5,1),(8,3,2,4,'5-4,6-4,5-3,6-3,',142,1),(9,2,14,1,'7-6,7-5,5-3',95.5,1),(10,3,23,1,'6-8,5-4',95.5,1),(11,3,23,1,'7-7,1-1',95.5,1);
+INSERT INTO `reservations` VALUES (1,1,22,1,'4-7,5-6',95.5,1),(2,1,8,1,'1-9,3-7',35.5,1),(3,3,22,1,'3-4,4-4',95.5,1),(4,1,22,1,'6-5,1-3',95.5,1),(5,3,8,1,'6-6,4-6',35.5,1),(6,1,22,1,'7-8,2-4',95.5,1),(7,2,22,1,'7-8,3-5',95.5,1),(8,3,2,4,'5-4,6-4,5-3,6-3,',142,1),(9,2,14,1,'7-6,7-5,5-3',95.5,1),(10,3,23,1,'6-8,5-4',95.5,1),(11,3,23,1,'7-7,1-1',95.5,1),(12,1,2,1,'6-8,',35.5,1);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-26 23:33:44
+-- Dump completed on 2016-06-13 22:31:19
